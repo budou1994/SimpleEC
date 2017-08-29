@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SimpleEC.iml" filepath="$PROJECT_DIR$/SimpleEC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ec/ec.iml" filepath="$PROJECT_DIR$/ec/ec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ec_annotations/ec_annotations.iml" filepath="$PROJECT_DIR$/ec_annotations/ec_annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ec_compiler/ec_compiler.iml" filepath="$PROJECT_DIR$/ec_compiler/ec_compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ec_core/ec_core.iml" filepath="$PROJECT_DIR$/ec_core/ec_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ec_logiic/ec_logiic.iml" filepath="$PROJECT_DIR$/ec_logiic/ec_logiic.iml" />
+    </modules>
+  </component>
+</project>
