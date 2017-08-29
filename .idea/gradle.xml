@@ -12,7 +12,7 @@
             <option value="$PROJECT_DIR$/ec_annotations" />
             <option value="$PROJECT_DIR$/ec_compiler" />
             <option value="$PROJECT_DIR$/ec_core" />
-            <option value="$PROJECT_DIR$/ec_logiic" />
+            <option value="$PROJECT_DIR$/ec_logic" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

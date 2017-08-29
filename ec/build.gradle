@@ -21,6 +21,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':ec_logiic')
+    compile project(':ec_logic')
     annotationProcessor project(':ec_compiler')
 }

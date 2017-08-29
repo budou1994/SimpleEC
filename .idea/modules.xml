@@ -7,7 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/ec_annotations/ec_annotations.iml" filepath="$PROJECT_DIR$/ec_annotations/ec_annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/ec_compiler/ec_compiler.iml" filepath="$PROJECT_DIR$/ec_compiler/ec_compiler.iml" />
       <module fileurl="file://$PROJECT_DIR$/ec_core/ec_core.iml" filepath="$PROJECT_DIR$/ec_core/ec_core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ec_logiic/ec_logiic.iml" filepath="$PROJECT_DIR$/ec_logiic/ec_logiic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ec_logic/ec_logic.iml" filepath="$PROJECT_DIR$/ec_logic/ec_logic.iml" />
     </modules>
   </component>
 </project>
