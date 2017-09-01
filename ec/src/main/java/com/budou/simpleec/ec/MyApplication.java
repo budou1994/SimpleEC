@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.budou.ec_core.app.EC;
 import com.budou.ec_logiic.icons.FontEcModule;
+import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 /**

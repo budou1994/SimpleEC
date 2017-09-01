@@ -29,7 +29,6 @@ public class Configurator {
      */
     private Configurator() {
         EC_CONFIGS.put(ConfigType.CONFIG_READY.name(), "false");
-        initIcons();
     }
 
     final HashMap<String, Object> getEcCONFIGS() {
@@ -63,6 +62,7 @@ public class Configurator {
      * 配置完成的方法
      */
     public void configure() {
+        initIcons();
         EC_CONFIGS.put(ConfigType.CONFIG_READY.name(), "true");
     }
 

@@ -9,7 +9,8 @@
     <com.joanzapata.iconify.widget.IconTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="{fa-bug}"
+        android:text="{fa-exclamation-circle spin 100sp #2d5fee}
+测试这个图标OK{icon-scan 36sp #ffc1c2}"
         android:id="@+id/icon_test"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
