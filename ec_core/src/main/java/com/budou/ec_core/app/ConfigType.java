@@ -13,5 +13,7 @@ public enum ConfigType {
     API_HOST,  //api host 网络请求域名
     APPLICATION_CONTEXT, //全局上下文对象
     CONFIG_READY, // 配置是否完成
-    ICON; // 字体图标库
+    ICON, // 字体图标库
+    LOADER_DELAYED;
+
 }
