@@ -1,12 +1,13 @@
 package com.budou.ec_core.net;
 
-import com.budou.ec_core.app.ConfigType;
+import com.budou.ec_core.app.ConfigKeys;
 import com.budou.ec_core.app.EC;
 
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -25,11 +26,11 @@ public class RestCreator {
     /**
      * 全局参数
      */
-    public static final class ParamsHolder{
-        private static final WeakHashMap<String,Object>PARAMS=new WeakHashMap<>();
+    public static final class ParamsHolder {
+        private static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
     }
 
-    public static WeakHashMap<String,Object>getParams(){
+    public static WeakHashMap<String, Object> getParams() {
         return ParamsHolder.PARAMS;
     }
 
@@ -39,8 +40,7 @@ public class RestCreator {
 
     private static final class RetrofitHolder {
         private static final String BASE_URL = (String) EC.getConfigurations()
-                .get(ConfigType.API_HOST.name());
-
+                .get(ConfigKeys.API_HOST.name());
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -51,7 +51,18 @@ public class RestCreator {
 
     private static final class OkHttpHolder {
         private static final int TIME_OUT = 60;
-        private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
+        private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
+        private static final ArrayList<Interceptor> INTERCEPTORS =
+                EC.getConfiguration(ConfigKeys.INTERCEPTOR);
+        private static OkHttpClient.Builder addInterceptor() {
+            if (INTERCEPTORS != null && !INTERCEPTORS.isEmpty()) {
+                for (Interceptor interceptor : INTERCEPTORS) {
+                    BUILDER.addInterceptor(interceptor);
+                }
+            }
+            return BUILDER;
+        }
+        private static final OkHttpClient OK_HTTP_CLIENT = addInterceptor()
                 .connectTimeout(TIME_OUT, TimeUnit.MINUTES)
                 .build();
 

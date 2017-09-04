@@ -7,6 +7,7 @@ import com.budou.ec_core.net.callback.IFailure;
 import com.budou.ec_core.net.callback.IRequest;
 import com.budou.ec_core.net.callback.ISuccess;
 import com.budou.ec_core.net.callback.RequestCallbacks;
+import com.budou.ec_core.net.download.DownloadHandler;
 import com.budou.ec_core.ui.loader.EcLoader;
 import com.budou.ec_core.ui.loader.LoaderStyle;
 
@@ -32,8 +33,11 @@ public class RestClient {
     private final String URL;
     private final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
     private final IRequest IREQUEST;
-    private final ISuccess ISUCESS;
+    private final ISuccess ISUCCESS;
     private final IError IERROR;
+    private final String DOWLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
     private final IFailure IFAILURE;
     private final RequestBody BODY;
     private final File FILE;
@@ -46,6 +50,9 @@ public class RestClient {
                       ISuccess iSuccess,
                       IError iError,
                       IFailure iFailure,
+                      String name,
+                      String extension,
+                      String dowload_dir,
                       RequestBody body,
                       File file,
                       Context context,
@@ -53,9 +60,12 @@ public class RestClient {
         this.URL = url;
         params.putAll(PARAMS);
         this.IREQUEST = iRequest;
-        this.ISUCESS = iSuccess;
+        this.ISUCCESS = iSuccess;
         this.IERROR = iError;
         this.IFAILURE = iFailure;
+        this.NAME = name;
+        this.EXTENSION = extension;
+        this.DOWLOAD_DIR = dowload_dir;
         this.BODY = body;
         this.FILE = file;
         this.CONTEXT = context;
@@ -74,6 +84,7 @@ public class RestClient {
         if (IREQUEST != null) {
             IREQUEST.onRequestStart();
         }
+
 
         if (STYLE != null) {
             EcLoader.showLoading(CONTEXT, STYLE);
@@ -115,17 +126,17 @@ public class RestClient {
 
     private Callback<String> getRequestCallBack() {
         return new RequestCallbacks(IREQUEST,
-                ISUCESS,
+                ISUCCESS,
                 IERROR,
                 IFAILURE,
                 STYLE);
     }
 
-    public void get() {
+    public final void get() {
         request(HttpMethod.GET);
     }
 
-    public void post() {
+    public  final void post() {
         if (BODY == null) {
             request(HttpMethod.POST);
         } else {
@@ -137,7 +148,7 @@ public class RestClient {
         }
     }
 
-    public void put() {
+    public final void put() {
         if (BODY == null) {
             request(HttpMethod.PUT);
         } else {
@@ -149,7 +160,17 @@ public class RestClient {
         }
     }
 
-    public void delete() {
+    public final void upload() {
+        request(HttpMethod.UPLOAD);
+    }
+
+    public final void delete() {
         request(HttpMethod.DELETE);
+    }
+
+    public final void download() {
+        new DownloadHandler(URL,PARAMS, IREQUEST, DOWLOAD_DIR, EXTENSION, NAME,
+                ISUCCESS, IFAILURE, IERROR)
+                .handleDowload();
     }
 }

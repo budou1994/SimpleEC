@@ -30,13 +30,13 @@ public class ExampleDelegate extends EcDelegate {
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 
         RestClient.builder()
-                .url("http://www.songshumall.com:8021/HomePage/GetMobileIndexPage")
+                .url("http://127.0.0.1/index")
 //                .params("", "")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-//                        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
                     }
                 })
                 .error(new IError() {

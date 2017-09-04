@@ -1,10 +1,7 @@
 package com.budou.ec_core.net.callback;
 
 import android.os.Handler;
-import android.view.InputQueue;
 
-import com.budou.ec_core.app.ConfigType;
-import com.budou.ec_core.app.EC;
 import com.budou.ec_core.ui.loader.EcLoader;
 import com.budou.ec_core.ui.loader.LoaderStyle;
 
@@ -76,7 +73,7 @@ public class RequestCallbacks implements Callback<String> {
     }
 
     private void onRequestFinish() {
-//        final long delayed = EC.getApplicationsContext(ConfigType.LOADER_DELAYED);
+//        final long delayed = EC.getApplicationsContext(ConfigKeys.LOADER_DELAYED);
         if (LOADERSTYLE != null) {
             HANDLER.postDelayed(new Runnable() {
                 @Override

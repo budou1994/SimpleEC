@@ -8,12 +8,13 @@ package com.budou.ec_core.app;
  * desc   ：枚举类，可用作惰性单例的初始化
  */
 
-public enum ConfigType {
+public enum ConfigKeys {
 
     API_HOST,  //api host 网络请求域名
     APPLICATION_CONTEXT, //全局上下文对象
     CONFIG_READY, // 配置是否完成
     ICON, // 字体图标库
-    LOADER_DELAYED;
+    LOADER_DELAYED,
+    INTERCEPTOR;
 
 }

@@ -24,16 +24,24 @@ public final class EC {
 
         Configurator.getInstance()
                 .getEcCONFIGS()
-                .put(ConfigType.APPLICATION_CONTEXT.name(), context.getApplicationContext());
+                .put(ConfigKeys.APPLICATION_CONTEXT, context.getApplicationContext());
 
         return Configurator.getInstance();
     }
 
-    public static HashMap<String, Object> getConfigurations() {
+    public static HashMap<Object, Object> getConfigurations() {
         return Configurator.getInstance().getEcCONFIGS();
     }
 
+    public static Configurator getConfigurator() {
+        return Configurator.getInstance();
+    }
+
+    public static <T> T getConfiguration(Object key) {
+        return getConfigurator().getConfiguration(key);
+    }
+
     public static Context getApplicationsContext() {
-        return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
+        return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTEXT.name());
     }
 }
