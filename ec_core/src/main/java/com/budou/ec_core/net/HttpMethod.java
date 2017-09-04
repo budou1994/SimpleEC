@@ -5,7 +5,7 @@ package com.budou.ec_core.net;
  * author : 布兜小爱
  * e-mail : budou1994@qq.com
  * time   : 2017年09月03日 03:17
- * desc   ：
+ * desc   ：请求类型的枚举
  */
 
 public enum HttpMethod {

@@ -9,6 +9,7 @@ import com.budou.ec_core.net.callback.ISuccess;
 import com.budou.ec_core.ui.loader.EcLoader;
 import com.budou.ec_core.ui.loader.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -32,6 +33,7 @@ public class RestClientBuilder {
     private IError mIError = null;
     private IFailure mIFailure = null;
     private RequestBody mBody = null;
+    private File mFile = null;
     private LoaderStyle mStyle = null;
     private Context mContext = null;
 
@@ -51,6 +53,16 @@ public class RestClientBuilder {
 
     public final RestClientBuilder params(String key, Object valus) {
         PARAMS.put(key, valus);
+        return this;
+    }
+
+    public final RestClientBuilder file(File file) {
+        this.mFile=file;
+        return this;
+    }
+
+    public final RestClientBuilder file(String filePath) {
+        this.mFile = new File(filePath);
         return this;
     }
 
@@ -78,11 +90,13 @@ public class RestClientBuilder {
         this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
         return this;
     }
-    public RestClientBuilder loader(Context context,LoaderStyle style){
-        this.mStyle=style;
-        this.mContext=context;
+
+    public RestClientBuilder loader(Context context, LoaderStyle style) {
+        this.mStyle = style;
+        this.mContext = context;
         return this;
     }
+
     public final RestClientBuilder loader(Context context) {
         this.mContext = context;
         this.mStyle = LoaderStyle.BallClipRotatePulseIndicator;
@@ -97,6 +111,7 @@ public class RestClientBuilder {
                 mIError,
                 mIFailure,
                 mBody,
+                mFile,
                 mContext,
                 mStyle);
     }
