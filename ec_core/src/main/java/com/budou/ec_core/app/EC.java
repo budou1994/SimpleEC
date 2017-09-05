@@ -23,14 +23,10 @@ public final class EC {
     public static Configurator init(Context context) {
 
         Configurator.getInstance()
-                .getEcCONFIGS()
+                .getEcConfigs()
                 .put(ConfigKeys.APPLICATION_CONTEXT, context.getApplicationContext());
 
         return Configurator.getInstance();
-    }
-
-    public static HashMap<Object, Object> getConfigurations() {
-        return Configurator.getInstance().getEcCONFIGS();
     }
 
     public static Configurator getConfigurator() {
@@ -42,6 +38,6 @@ public final class EC {
     }
 
     public static Context getApplicationsContext() {
-        return (Context) getConfigurations().get(ConfigKeys.APPLICATION_CONTEXT.name());
+        return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
     }
 }

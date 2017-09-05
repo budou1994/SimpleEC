@@ -39,8 +39,7 @@ public class RestCreator {
     }
 
     private static final class RetrofitHolder {
-        private static final String BASE_URL = (String) EC.getConfigurations()
-                .get(ConfigKeys.API_HOST.name());
+        private static final String BASE_URL = EC.getConfiguration(ConfigKeys.API_HOST);
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -54,6 +53,7 @@ public class RestCreator {
         private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
         private static final ArrayList<Interceptor> INTERCEPTORS =
                 EC.getConfiguration(ConfigKeys.INTERCEPTOR);
+
         private static OkHttpClient.Builder addInterceptor() {
             if (INTERCEPTORS != null && !INTERCEPTORS.isEmpty()) {
                 for (Interceptor interceptor : INTERCEPTORS) {
@@ -62,6 +62,7 @@ public class RestCreator {
             }
             return BUILDER;
         }
+
         private static final OkHttpClient OK_HTTP_CLIENT = addInterceptor()
                 .connectTimeout(TIME_OUT, TimeUnit.MINUTES)
                 .build();

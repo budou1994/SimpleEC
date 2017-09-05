@@ -29,10 +29,10 @@ public class Configurator {
      * 初始化的时候，将配置未完成传递过去
      */
     private Configurator() {
-        EC_CONFIGS.put(ConfigKeys.CONFIG_READY, "false");
+        EC_CONFIGS.put(ConfigKeys.CONFIG_READY, false);
     }
 
-    final HashMap<Object, Object> getEcCONFIGS() {
+    final HashMap<Object, Object> getEcConfigs() {
         return EC_CONFIGS;
     }
 
@@ -43,7 +43,7 @@ public class Configurator {
         private final static Configurator INSTANCE = new Configurator();
     }
 
-    public static Configurator getInstance() {
+     static Configurator getInstance() {
         return Holder.INSTANCE;
     }
 
@@ -62,9 +62,9 @@ public class Configurator {
     /**
      * 配置完成的方法
      */
-    public void configure() {
+    public final void configure() {
         initIcons();
-        EC_CONFIGS.put(ConfigKeys.CONFIG_READY, "true");
+        EC_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
     }
 
     /**
@@ -73,33 +73,49 @@ public class Configurator {
      * @param host 配置api
      */
     public final Configurator withApiHost(String host) {
-        EC_CONFIGS.put(ConfigKeys.API_HOST.name(), host);
+        EC_CONFIGS.put(ConfigKeys.API_HOST, host);
         return this;
     }
 
+    /**
+     * 对字体图标库进行配置
+     * @param descriptor
+     * @return
+     */
     public final Configurator withIcon(IconFontDescriptor descriptor) {
         ICONS.add(descriptor);
         return this;
     }
 
+    /**
+     *
+     * @param interceptor
+     * @return
+     */
     public final Configurator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);
         EC_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
 
+    /**
+     *
+     * @param interceptors
+     * @return
+     */
     public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
         EC_CONFIGS.put(ConfigKeys.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
+
     /**
      * 对文件配置完成进行检查，如果配置失败就抛出运行异常
      */
     private void checkConfiguration() {
         final boolean isReady = (boolean) EC_CONFIGS.get(ConfigKeys.CONFIG_READY);
         if (!isReady) {
-            throw new RuntimeException("Configuration is not ready！Call Config");
+            throw new RuntimeException("Configuration is not ready,call configure");
         }
     }
 

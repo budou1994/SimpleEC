@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
 
+import com.budou.ec_core.app.EC;
 import com.budou.ec_core.delegates.EcDelegate;
 import com.budou.ec_core.net.RestClient;
 import com.budou.ec_core.net.callback.IError;
@@ -28,6 +29,7 @@ public class ExampleDelegate extends EcDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
+
 
         RestClient.builder()
                 .url("http://127.0.0.1/index")
@@ -63,6 +65,6 @@ public class ExampleDelegate extends EcDelegate {
                     }
                 })
                 .build()
-                .post();
+                .get();
     }
 }
