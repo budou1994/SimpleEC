@@ -12,6 +12,7 @@ import com.budou.ec_core.delegates.EcDelegate;
 import com.budou.ec_logiic.icons.FontEcModule;
 import com.budou.ec_logiic.launcher.LauncherDelegate;
 import com.budou.ec_logiic.launcher.LauncherScrollDelegate;
+import com.budou.ec_logiic.sign.SignInDelegate;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.joanzapata.iconify.fonts.IoniconsModule;
 
@@ -27,7 +28,7 @@ public class MainActivity extends ProxyActivity {
 
     @Override
     public EcDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignInDelegate();
     }
 
 //    @Override
